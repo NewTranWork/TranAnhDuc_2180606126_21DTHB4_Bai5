@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+const { boolean } = require('webidl-conversions');
 let productSchema = mongoose.Schema({
     productName:{
         type:String,
@@ -24,8 +25,13 @@ let productSchema = mongoose.Schema({
         default:""
     },
     categoryID:{
-        type:String,
+        type:mongoose.Types.ObjectId,
+        ref:"category",
         required:true
+    },
+    isDeleted:{
+        type:Boolean,
+        default:false
     }
 },{
     timestamps:true
